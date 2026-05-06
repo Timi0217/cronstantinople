@@ -1,4 +1,4 @@
-"""Cronstant — Persistent scheduling for agents and humans."""
+"""Cronstantinople — Persistent scheduling for agents and humans."""
 import os
 import json
 import logging
@@ -14,14 +14,14 @@ from schemas import ScheduleCreate, ScheduleUpdate, ScheduleOut, ScheduleDetail,
 import scheduler_engine
 
 logging.basicConfig(level=logging.INFO, format="%(asctime)s %(levelname)s %(name)s: %(message)s")
-log = logging.getLogger("cronstant")
+log = logging.getLogger("cronstantinople")
 
 MANIFEST = {
     "schema": "chekk.agent/v1",
-    "name": "cronstant",
-    "slug": "chekk/cronstant",
-    "description": "Persistent cron scheduler for AI agents. Create, manage, and monitor scheduled webhook jobs. Agents create a schedule once — Cronstant remembers and fires reliably, even across restarts.",
-    "source_url": "https://github.com/timidayodeji/cronstant",
+    "name": "cronstantinople",
+    "slug": "chekk/cronstantinople",
+    "description": "Persistent cron scheduler for AI agents. Create, manage, and monitor scheduled webhook jobs. Agents create a schedule once — Cronstantinople remembers and fires reliably, even across restarts.",
+    "source_url": "https://github.com/timidayodeji/cronstantinople",
     "framework": "fastapi",
     "entrypoints": {
         "manifest": "/.well-known/agent.json",
@@ -155,13 +155,13 @@ def execution_to_dict(e: Execution) -> dict:
 @asynccontextmanager
 async def lifespan(app: FastAPI):
     scheduler_engine.start()
-    log.info("Cronstant started")
+    log.info("Cronstantinople started")
     yield
     scheduler_engine.shutdown()
-    log.info("Cronstant stopped")
+    log.info("Cronstantinople stopped")
 
 
-app = FastAPI(title="Cronstant", description="Persistent cron scheduler for agents", lifespan=lifespan)
+app = FastAPI(title="Cronstantinople", description="Persistent cron scheduler for agents", lifespan=lifespan)
 
 
 # ── Agent manifest ──────────────────────────────────────────
@@ -175,7 +175,7 @@ async def agent_manifest():
 async def health(db: Session = Depends(get_db)):
     count = db.query(Schedule).count()
     active = db.query(Schedule).filter(Schedule.is_active == True).count()
-    return {"status": "ok", "service": "cronstant", "schedules": count, "active": active}
+    return {"status": "ok", "service": "cronstantinople", "schedules": count, "active": active}
 
 
 # ── CRUD ────────────────────────────────────────────────────
@@ -315,7 +315,7 @@ async def root():
     index = os.path.join(static_dir, "index.html")
     if os.path.isfile(index):
         return FileResponse(index)
-    return {"service": "cronstant", "docs": "/docs", "manifest": "/.well-known/agent.json"}
+    return {"service": "cronstantinople", "docs": "/docs", "manifest": "/.well-known/agent.json"}
 
 
 if __name__ == "__main__":
