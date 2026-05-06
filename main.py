@@ -21,7 +21,7 @@ MANIFEST = {
     "name": "cronstantinople",
     "slug": "chekk/cronstantinople",
     "description": "Persistent cron scheduler for AI agents. Create, manage, and monitor scheduled webhook jobs. Agents create a schedule once — Cronstantinople remembers and fires reliably, even across restarts.",
-    "source_url": "https://github.com/timidayodeji/cronstantinople",
+    "source_url": "https://github.com/Timi0217/cronstantinople",
     "framework": "fastapi",
     "entrypoints": {
         "manifest": "/.well-known/agent.json",
